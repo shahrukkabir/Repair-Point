@@ -1,11 +1,9 @@
-import React from 'react';
+import ServiceCardListClient from "@/components/ServiceCardListClient";
 
-const page = () => {
+export default function Home() {
   return (
-    <div>
-      <h2 className='text-red-300'>Eta Home</h2>
-    </div>
-  );
-};
-
-export default page;
+    <main className="flex flex-col">
+      <ServiceCardListClient />
+    </main>
+  )
+}
