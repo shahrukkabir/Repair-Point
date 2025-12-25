@@ -56,7 +56,7 @@ export default function Navbar() {
             <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-4">
                 {/* Logo */}
                 <Link href="/" className="text-xl font-bold">
-                    <span className="text-2xl font-extrabold bg-clip-text bg-gradient-to-r from-blue-500 to-yellow-500 text-transparent">
+                    <span className="text-2xl font-extrabold bg-clip-text bg-linear-to-r from-blue-500 to-yellow-500 text-transparent">
                         RepairPoint
                     </span>
                 </Link>

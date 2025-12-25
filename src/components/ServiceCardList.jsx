@@ -80,7 +80,7 @@ function ServiceCardListInner() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {paginatedServices.map((service) => (
-          <div key={service._id} className="relative bg-gradient-to-br from-blue-50 via-white to-red-50 rounded-xl shadow-lg overflow-hidden group transition-all duration-300 hover:ring-2 hover:ring-blue-400">
+          <div key={service._id} className="relative bg-linear-to-br from-blue-50 via-white to-red-50 rounded-xl shadow-lg overflow-hidden group transition-all duration-300 hover:ring-2 hover:ring-blue-400">
             {/* Image */}
             <div className="relative overflow-hidden">
               <Image src={service.image} alt={service.title} width={400} height={300} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
@@ -96,7 +96,7 @@ function ServiceCardListInner() {
                 ${service.price}
               </p>
 
-              <Link href={`/services/${service._id}`} className="w-full bg-gradient-to-r from-blue-500 to-yellow-400 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition-all duration-200 text-center block shadow">
+              <Link href={`/services/${service._id}`} className="w-full bg-linear-to-r from-blue-500 to-yellow-400 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition-all duration-200 text-center block shadow">
                 VIEW DETAILS
               </Link>
             </div>
