@@ -90,7 +90,7 @@ export default function LoginForm() {
                   </a>
                 </div>
               </div>
-              <div className="!mt-12">
+              <div className="mt-12!">
                 <button
                   type="submit"
                   className="w-full py-2 px-4 text-[15px] font-medium tracking-wide rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none cursor-pointer"
@@ -99,7 +99,7 @@ export default function LoginForm() {
                   {loading ? "Logging in..." : "Log in"}
                 </button>
               </div>
-              <p className="text-slate-900 text-sm !mt-6 text-center">Don't have an account? <a href="/register" className="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold">Register here</a></p>
+              <p className="text-slate-900 text-sm mt-6! text-center"> Dont have an account? <a href="/register" className="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold">Register here</a></p>
             </form>
             <div className="flex justify-center items-center mt-8">
               <AuthButton />

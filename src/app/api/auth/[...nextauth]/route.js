@@ -41,6 +41,7 @@ const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async signIn({ user, account, profile, credentials }) {
+      console.log(account);
       try {
         const client = await clientPromise;
         const db = client.db(process.env.DB_NAME);
