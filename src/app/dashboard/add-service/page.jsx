@@ -1,0 +1,146 @@
+"use client";
+import { useState } from "react";
+import { useSession } from "next-auth/react";
+import toast, { Toaster } from "react-hot-toast";
+
+export default function ServicesPage() {
+  const { data: session } = useSession();
+
+  const [form, setForm] = useState({
+    title: "",
+    city: "",
+    price: "",
+    description: "",
+    image: "",
+    available: true,
+    email: session?.user?.email || "",
+  });
+
+  const [loading, setLoading] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setForm((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+      email: session?.user?.email || "",
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const res = await fetch("/api/services", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...form,
+          email: session?.user?.email || "",
+        }),
+      });
+
+      const result = await res.json();
+
+      if (result.success) {
+        toast.success("Service added successfully!");
+        setForm({
+          title: "",
+          city: "",
+          price: "",
+          description: "",
+          image: "",
+          available: true,
+          email: session?.user?.email || "",
+        });
+      } else {
+        toast.error(result.error || "Failed to add service.");
+      }
+    } catch (err) {
+      toast.error(err.message || "Failed to add service.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      <Toaster position="top-right" />
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-2xl mx-auto bg-white rounded-xl shadow p-8 space-y-4 mt-8"
+      >
+        <h2 className="text-2xl font-bold mb-4 text-blue-700">
+          Add New Service
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input
+            name="title"
+            value={form.title}
+            onChange={handleChange}
+            required
+            placeholder="Service Title"
+            className="border rounded px-3 py-2 w-full"
+          />
+
+          <input
+            name="city"
+            value={form.city}
+            onChange={handleChange}
+            required
+            placeholder="City"
+            className="border rounded px-3 py-2 w-full"
+          />
+
+          <input
+            name="price"
+            value={form.price}
+            onChange={handleChange}
+            required
+            placeholder="Price"
+            type="number"
+            min="0"
+            className="border rounded px-3 py-2 w-full"
+          />
+
+          <input
+            name="image"
+            value={form.image}
+            onChange={handleChange}
+            placeholder="Image URL"
+            className="border rounded px-3 py-2 w-full"
+          />
+        </div>
+
+        <textarea
+          name="description"
+          value={form.description}
+          onChange={handleChange}
+          required
+          placeholder="Service Description"
+          className="border rounded px-3 py-2 w-full min-h-20"
+        />
+
+        <label className="flex items-center gap-2">
+          <input
+            type="checkbox"
+            name="available"    
+            checked={form.available}
+            onChange={handleChange}
+          />
+          Available
+        </label>
+
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          disabled={loading}
+        >
+          {loading ? "Adding..." : "Add Service"}
+        </button>
+      </form>
+    </>
+  );
+}
