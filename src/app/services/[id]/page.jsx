@@ -5,6 +5,7 @@ import { useRouter, useParams } from "next/navigation";
 import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import Image from "next/image";
+import Loading from "@/app/loading";
 
 export default function ServiceDetailsPage() {
   const router = useRouter();
@@ -35,9 +36,7 @@ export default function ServiceDetailsPage() {
     if (id) fetchService();
   }, [id]);
 
-  if (loading) {
-    return <div className="p-8 text-center">Loading...</div>;
-  }
+  if (loading) return <Loading />;
 
   if (error) {
     return (
@@ -71,7 +70,7 @@ export default function ServiceDetailsPage() {
         {/* Card */}
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden border">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        
+
             <div className="p-8">
               <Image
                 src={service.image}
@@ -127,7 +126,7 @@ export default function ServiceDetailsPage() {
                     })
                   }
                 >
-                  Request Service
+                  Book This Service
                 </button>
 
                 <button

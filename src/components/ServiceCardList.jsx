@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/app/loading";
 import { QueryClient, QueryClientProvider, useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,7 +31,7 @@ function ServiceCardListInner() {
   const [page, setPage] = useState(1);
   const pageSize = 8;
 
-  // if (isLoading) return <Loading />;
+  if (isLoading) return <Loading />;
 
   if (error) {
     return <div className="p-8 text-red-600">{error.message}</div>;
