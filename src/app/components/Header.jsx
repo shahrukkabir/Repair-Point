@@ -32,13 +32,14 @@ export default function Header() {
 
                             <motion.span
                                 animate={{
-                                    color: ["#dfcc1a", "#e31d1d", "#193aa9", "#b221c2", "#1ac222", "#e53b19", ],
-                                    transition: { duration: 2, repeat: Infinity },
+                                    color: ['#4f46e5', '#7c3aed', '#ec4899', '#f59e0b', '#10b981', '#4f46e5'],
+                                    transition: { duration: 4, repeat: Infinity, ease: "linear" },
                                 }}
                                 className="drop-shadow-lg"
                             >
                                 You Can Trust
                             </motion.span>
+                            
                         </h1>
 
 

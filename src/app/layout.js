@@ -4,6 +4,7 @@ import NextAuthProvider from "./provider/SessionProvider";
 import QueryProvider from "./provider/QueryProvider";
 import { Toaster } from "react-hot-toast";
 import ClientNavbar from "./components/ClientNavbar";
+import Footer from "./components/Footer";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -39,7 +40,7 @@ export default function RootLayout({ children }) {
 
             <ClientNavbar />
             <main>{children}</main>
-
+            <Footer />
           </QueryProvider>
         </NextAuthProvider>
       </body>

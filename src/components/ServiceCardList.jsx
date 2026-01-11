@@ -163,6 +163,16 @@ function ServiceCardListInner() {
         ))}
       </div>
 
+      {!isServicePage && (
+        <div className="flex justify-center mt-14">
+          <Link href="/services"
+            className="bg-[#4640c2] hover:bg-[#3b35a5] text-white font-semibold px-10 py-4 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl">
+            Show All Services
+          </Link>
+        </div>
+      )}
+
+
       {/* Pagination */}
       {isServicePage && totalPages > 1 && (
         <div className="flex justify-center items-center gap-2 mt-10">
@@ -177,11 +187,10 @@ function ServiceCardListInner() {
           {[...Array(totalPages)].map((_, i) => (
             <button
               key={i}
-              className={`px-3 py-1 rounded font-semibold ${
-                page === i + 1
-                  ? "bg-[#4640c2] text-white"
-                  : "bg-gray-100 text-gray-700"
-              }`}
+              className={`px-3 py-1 rounded font-semibold ${page === i + 1
+                ? "bg-[#4640c2] text-white"
+                : "bg-gray-100 text-gray-700"
+                }`}
               onClick={() => setPage(i + 1)}
             >
               {i + 1}
