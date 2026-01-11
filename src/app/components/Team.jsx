@@ -47,7 +47,7 @@ const Team = () => {
     <section className="px-4 py-20 mx-auto max-w-7xl">
       {/* Header */}
       <div className="max-w-2xl mx-auto mb-16 text-center">
-        <span className="inline-block px-4 py-1 mb-4 text-xs font-semibold tracking-wider text-indigo-700 uppercase rounded-full bg-indigo-100">
+        <span className="inline-block px-4 py-1 mb-6 text-xs font-semibold tracking-wider text-indigo-700 uppercase rounded-full bg-indigo-100">
           Expert Professionals
         </span>
 
