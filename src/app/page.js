@@ -1,11 +1,11 @@
 import ServiceCardListClient from "@/components/ServiceCardListClient";
-import Header from "./components/Header";
+import ClientHeader from "./components/ClientHeader";
 
 export default function Home() {
   return (
     <main className="flex flex-col">
-      <Header />
+      <ClientHeader />
       <ServiceCardListClient />
     </main>
-  )
+  );
 }
