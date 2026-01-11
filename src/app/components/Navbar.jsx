@@ -7,6 +7,7 @@ import { FaBars, FaTimes, FaUserCircle, FaSignOutAlt, FaUser, FaHome, FaListUl, 
 import { MdDashboardCustomize, MdRateReview } from "react-icons/md";
 import Swal from "sweetalert2";
 import Image from "next/image";
+import logo from "../../../public/logo.png"
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -78,16 +79,28 @@ export default function Navbar() {
 
     return (
         <nav className={`fixed w-full top-0 z-50 bg-white border-b border-gray-200 transition-colors duration-300 ${scrolled ? "shadow-md" : ""}`} >
-            <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-4">
+            <div className="max-w-7xl mx-auto flex items-center justify-between h-20 px-4">
                 {/* Logo */}
                 <div className="flex items-center">
-                    <Link href="/" className="text-xl font-bold flex items-center">
-                        <span className="text-2xl font-extrabold tracking-tight ml-2 block md:hidden lg:block text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
-">
-                            RepairPoint
+                    <Link href="/" className="flex items-center normal-case cursor-pointer group transition-transform duration-300 hover:scale-[1.03]">
+                        {/* Logo Image */}
+                        <Image src={logo} alt="RepairRight Logo" className="w-15 h-15 object-contain"
+                            priority />
+
+                        {/* Logo Text */}
+                        <span className="text-2xl font-bold tracking-tight">
+                            <span className="text-base-content">
+                                Repair
+                            </span>
+                            <span className=" ml-1 text-[#4640c2]">
+                                Point
+                            </span>
                         </span>
                     </Link>
                 </div>
+
+
+
                 {/* Desktop Nav */}
                 <div className="hidden md:flex space-x-0 md:text-sm lg:text-base lg:space-x-4">{navLinks}</div>
                 {/* Right Buttons (desktop) */}

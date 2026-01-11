@@ -2,10 +2,14 @@
 import Link from "next/link";
 import React from "react";
 import CountUp from "react-countup";
+import { motion } from "framer-motion";
+import { FiTool } from "react-icons/fi";
+
 
 export default function Header() {
     return (
-        <section className="mt-12 min-h-[60vh] relative w-full bg-linear-to-br from-gray-50 via-white to-gray-50 overflow-hidden">
+        <section className="min-h-screen flex items-center relative w-full bg-linear-to-br from-gray-50 via-white to-gray-50 overflow-hidden">
+
             {/* Background decorative elements */}
             <div className="absolute inset-0">
                 <div className="absolute top-20 left-10 w-72 h-72 bg-red-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
@@ -14,7 +18,7 @@ export default function Header() {
             </div>
 
             <div className="max-w-7xl mx-auto relative z-10">
-                <div className="flex flex-col lg:flex-row items-center justify-between py-16 px-4 lg:px-8">
+                <div className="flex flex-col lg:flex-row items-center justify-between px-4 lg:px-8">
                     {/* Left Content */}
                     <div className="flex-1 text-center lg:text-left mb-12 lg:mb-0 lg:pr-12">
                         <div className="inline-flex items-center px-4 py-2 bg-blue-50 border border-blue-200 rounded-full text-blue-600 text-sm font-medium mb-6">
@@ -24,20 +28,27 @@ export default function Header() {
 
                         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-6">
                             Expert Repair Services
-                            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
-">
+                            <br />
+
+                            <motion.span
+                                animate={{
+                                    color: ["#dfcc1a", "#e31d1d", "#193aa9", "#b221c2", "#1ac222", "#e53b19", ],
+                                    transition: { duration: 2, repeat: Infinity },
+                                }}
+                                className="drop-shadow-lg"
+                            >
                                 You Can Trust
-                            </span>
+                            </motion.span>
                         </h1>
+
 
                         <p className="text-xl text-gray-600 mb-6 leading-relaxed max-w-2xl lg:max-w-none">
                             Connect with skilled professionals, share your expertise, or find the perfect repair service for your needs. Our platform makes booking reliable services simple and secure.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                            <Link href="/" className="inline-flex items-center justify-center mx-10 lg:mx-0 px-5 py-2 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500
- text-white font-semibold rounded-lg shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 text-base border-0 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                                Browse Services
+                            <Link href="/services" className="inline-flex items-center justify-center mx-10 lg:mx-0 px-6 py-3 bg-linear-to-r bg-[#4640c2] hover:bg-[#3b35a5] text-white font-semibold rounded-xl shadow-md hover:shadow-lg transform transition-all duration-300 text-base border-0 hover:scale-105">
+                            <FiTool className="mr-2" /> Browse Services
                                 <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                                 </svg>
