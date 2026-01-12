@@ -39,7 +39,7 @@ const AboutUs = () => {
 
       <motion.section
         ref={ref}
-        className="relative flex min-h-[50vh] items-center justify-center overflow-hidden lg:min-h-[calc(100vh-80px)]"
+        className="relative flex min-h-[50vh] items-center justify-center overflow-hidden lg:min-h-screen"
         variants={containerVariants}
         initial="hidden"
         animate={isInView ? 'visible' : 'hidden'}

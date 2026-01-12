@@ -87,7 +87,7 @@ const WhyChooseUs = () => {
           </span>
 
           <h2 className="mx-auto mb-6 max-w-3xl text-4xl font-bold text-gray-900">
-            <span className="text-indigo-600">Professional</span> repair services
+            <span className="text-[#f59e0b]">Professional</span> repair services
             you can trust
           </h2>
 

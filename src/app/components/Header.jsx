@@ -8,7 +8,7 @@ import { FiTool } from "react-icons/fi";
 
 export default function Header() {
     return (
-        <section className="min-h-screen flex items-center relative w-full bg-linear-to-br from-gray-50 via-white to-gray-50 overflow-hidden">
+        <section className="min-h-screen mt-12 flex items-center relative w-full bg-linear-to-br from-gray-50 via-white to-gray-50 overflow-hidden">
 
             {/* Background decorative elements */}
             <div className="absolute inset-0">
@@ -18,7 +18,7 @@ export default function Header() {
             </div>
 
             <div className="max-w-7xl mx-auto relative z-10">
-                <div className="flex flex-col lg:flex-row items-center justify-between px-4 lg:px-8">
+                <div className="flex flex-col lg:flex-row items-center justify-between py-16 px-4 lg:px-8">
                     {/* Left Content */}
                     <div className="flex-1 text-center lg:text-left mb-12 lg:mb-0 lg:pr-12">
                         <div className="inline-flex items-center px-4 py-2 bg-blue-50 border border-blue-200 rounded-full text-blue-600 text-sm font-medium mb-6">
@@ -43,7 +43,7 @@ export default function Header() {
                         </h1>
 
 
-                        <p className="text-xl text-gray-600 mb-6 leading-relaxed max-w-2xl lg:max-w-none">
+                        <p className="text-xl text-gray-600 mb-6 leading-relaxed max-w-2xl lg:max-w-none ">
                             Connect with skilled professionals, share your expertise, or find the perfect repair service for your needs. Our platform makes booking reliable services simple and secure.
                         </p>
 

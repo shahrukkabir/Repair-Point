@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSession, signOut } from "next-auth/react";
-import { FaBars, FaTimes, FaUserCircle, FaSignOutAlt, FaUser, FaHome, FaListUl, FaInfoCircle, FaEnvelope } from "react-icons/fa";
+import { FaBars, FaTimes, FaUserCircle, FaSignOutAlt, FaUser, FaHome, FaListUl, FaInfoCircle, FaEnvelope, FaQuestion } from "react-icons/fa";
 import { MdDashboardCustomize, MdRateReview } from "react-icons/md";
 import Swal from "sweetalert2";
 import Image from "next/image";
@@ -60,9 +60,9 @@ export default function Navbar() {
                 <FaListUl className="text-lg" /> Services
             </Link>
 
-            <Link href="/reviews" className={`md:px-2 lg:px-3 py-2 font-medium flex items-center gap-2 ${pathname === "/reviews" ? "text-blue-600 font-semibold" : "text-gray-700 hover:text-gray-900"}`}
+            <Link href="/faq" className={`md:px-2 lg:px-3 py-2 font-medium flex items-center gap-2 ${pathname === "/faq" ? "text-blue-600 font-semibold" : "text-gray-700 hover:text-gray-900"}`}
                 onClick={() => setMobileMenuOpen(false)} >
-                <MdRateReview className="text-lg mt-1" /> Reviews
+                <FaQuestion className="text-lg mt-1" /> FAQ
             </Link>
 
             <Link href="/about-us" className={`md:px-2 lg:px-3 py-2 font-medium flex items-center gap-2 ${pathname === "/about-us" ? "text-blue-600 font-semibold" : "text-gray-700 hover:text-gray-900"}`}
@@ -79,7 +79,7 @@ export default function Navbar() {
 
     return (
         <nav className={`fixed w-full top-0 z-50 bg-white border-b border-gray-200 transition-colors duration-300 ${scrolled ? "shadow-md" : ""}`} >
-            <div className="max-w-7xl mx-auto flex items-center justify-between h-20 px-4">
+            <div className="max-w-7xl mx-auto flex items-center justify-between h-16 px-4">
                 {/* Logo */}
                 <div className="flex items-center">
                     <Link href="/" className="flex items-center normal-case cursor-pointer group transition-transform duration-300 hover:scale-[1.03]">
@@ -177,9 +177,9 @@ export default function Navbar() {
                             <Link href="/dashboard" className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)} >
                                 <MdDashboardCustomize /> Dashboard
                             </Link>
-                            <Link href="/reviews" className={`flex items-center gap-2 ${pathname === "/reviews" ? "text-blue-600 font-semibold" : "text-gray-700 hover:text-gray-900"}`}
+                            <Link href="/faq" className={`flex items-center gap-2 ${pathname === "/faq" ? "text-blue-600 font-semibold" : "text-gray-700 hover:text-gray-900"}`}
                                 onClick={() => setMobileMenuOpen(false)} >
-                                <MdRateReview className="text-lg" /> Reviews
+                                <MdRateReview className="text-lg" /> FAQ
                             </Link>
                             <button onClick={() => { handleSignOut(); setMobileMenuOpen(false); }} className="flex items-center gap-2 w-full" >
                                 <FaSignOutAlt /> Logout
