@@ -108,8 +108,8 @@ export default function DashboardLayout({ children }) {
           <Link href="/dashboard/add-service" className={linkClass("/dashboard/add-service")} onClick={closeDrawer}>
             <FaPlusCircle /> Add Service
           </Link>
-          <Link href="/dashboard/my-services" className={linkClass("/dashboard/my-services")} onClick={closeDrawer}>
-            <FaListUl /> My Services
+          <Link href="/dashboard/all-services" className={linkClass("/dashboard/all-services")} onClick={closeDrawer}>
+            <FaListUl /> All Services
           </Link>
           <Link href="/dashboard/booked-services" className={linkClass("/dashboard/booked-services")} onClick={closeDrawer}>
             <FaRegListAlt /> Booked Services

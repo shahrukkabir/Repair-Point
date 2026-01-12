@@ -1,10 +1,12 @@
 "use client";
-import { useState } from "react";
-import { useSession } from "next-auth/react";
+
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 
-export default function ServicesPage() {
-  const { data: session } = useSession();
+export default function EditServiceForm({ serviceId }) {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState({
     title: "",
@@ -13,76 +15,88 @@ export default function ServicesPage() {
     description: "",
     image: "",
     available: true,
-    email: session?.user?.email || "",
   });
 
-  const [loading, setLoading] = useState(false);
+  // 🔹 Fetch existing service
+  useEffect(() => {
+    if (!serviceId) return;
 
+    setLoading(true);
+    fetch(`/api/services/${serviceId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setForm(data.service);
+        } else {
+          toast.error(data.error || "Failed to load service");
+        }
+      })
+      .catch((err) => {
+        toast.error(err.message || "Failed to load service");
+      })
+      .finally(() => setLoading(false));
+  }, [serviceId]);
+
+  // 🔹 Handle input change
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setForm((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
-      email: session?.user?.email || "",
     }));
   };
 
+  // 🔹 Submit update
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const res = await fetch("/api/services", {
-        method: "POST",
+      const res = await fetch(`/api/services/${serviceId}`, {
+        method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...form,
-          email: session?.user?.email || "",
-        }),
+        body: JSON.stringify(form),
       });
 
       const result = await res.json();
 
       if (result.success) {
-        toast.success("Service added successfully!");
-        setForm({
-          title: "",
-          city: "",
-          price: "",
-          description: "",
-          image: "",
-          available: true,
-          email: session?.user?.email || "",
-        });
+        toast.success("Service updated successfully!");
+        router.push("/dashboard/all-services");
       } else {
-        toast.error(result.error || "Failed to add service.");
+        toast.error(result.error || "Failed to update service");
       }
     } catch (err) {
-      toast.error(err.message || "Failed to add service.");
+      toast.error(err.message || "Failed to update service");
     } finally {
       setLoading(false);
     }
   };
 
+  if (loading && !form.title) {
+    return <div className="p-8 text-center">Loading service...</div>;
+  }
+
   return (
     <>
       <Toaster position="top-right" />
+
       <form
         onSubmit={handleSubmit}
-        className="max-w-2xl mx-auto bg-white rounded-xl shadow p-8 space-y-4 mt-8"
+        className="mx-auto mt-8 max-w-2xl space-y-4 rounded-xl bg-white p-8 shadow"
       >
-        <h2 className="text-2xl font-bold mb-4 text-blue-700">
-          Add New Service
+        <h2 className="mb-4 text-2xl font-bold text-blue-700">
+          Edit Service
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           <input
             name="title"
             value={form.title}
             onChange={handleChange}
             required
             placeholder="Service Title"
-            className="border rounded px-3 py-2 w-full"
+            className="w-full rounded border px-3 py-2"
           />
 
           <input
@@ -91,7 +105,7 @@ export default function ServicesPage() {
             onChange={handleChange}
             required
             placeholder="City"
-            className="border rounded px-3 py-2 w-full"
+            className="w-full rounded border px-3 py-2"
           />
 
           <input
@@ -99,10 +113,10 @@ export default function ServicesPage() {
             value={form.price}
             onChange={handleChange}
             required
-            placeholder="Price"
             type="number"
             min="0"
-            className="border rounded px-3 py-2 w-full"
+            placeholder="Price"
+            className="w-full rounded border px-3 py-2"
           />
 
           <input
@@ -110,7 +124,7 @@ export default function ServicesPage() {
             value={form.image}
             onChange={handleChange}
             placeholder="Image URL"
-            className="border rounded px-3 py-2 w-full"
+            className="w-full rounded border px-3 py-2"
           />
         </div>
 
@@ -120,13 +134,13 @@ export default function ServicesPage() {
           onChange={handleChange}
           required
           placeholder="Service Description"
-          className="border rounded px-3 py-2 w-full min-h-20"
+          className="min-h-[80px] w-full rounded border px-3 py-2"
         />
 
         <label className="flex items-center gap-2">
           <input
             type="checkbox"
-            name="available"    
+            name="available"
             checked={form.available}
             onChange={handleChange}
           />
@@ -135,10 +149,10 @@ export default function ServicesPage() {
 
         <button
           type="submit"
-          className="w-full cursor-pointer bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
           disabled={loading}
+          className="w-full cursor-pointer rounded bg-blue-600 py-2 text-white transition hover:bg-blue-700"
         >
-          {loading ? "Adding..." : "Add Service"}
+          {loading ? "Updating..." : "Update Service"}
         </button>
       </form>
     </>
