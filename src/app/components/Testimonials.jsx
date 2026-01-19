@@ -30,13 +30,14 @@ const Testimonials = () => (
       <div className="grid gap-8 md:grid-cols-3">
         {testimonials.map((t, idx) => (
           <div key={idx} className="bg-base-200 rounded-xl shadow p-6 flex flex-col items-center">
-             <Image
-                src={t.avatar}
-                alt={t.name}
-                width={96}
-                height={96}
-                className="mx-auto mb-6 rounded-full border-4 border-primary object-cover"
-              />
+            <Image
+              src={t.avatar}
+              alt={t.name}
+              width={96}
+              unoptimized
+              height={96}
+              className="mx-auto mb-6 rounded-full border-4 border-primary object-cover"
+            />
             <p className="text-base-content/80 italic mb-4 text-center">{t.feedback}</p>
             <div className="font-semibold text-base-content">{t.name}</div>
             <div className="text-sm text-base-content/60">{t.role}</div>

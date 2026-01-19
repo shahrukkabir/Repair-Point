@@ -134,7 +134,7 @@ export default function EditServiceForm({ serviceId }) {
           onChange={handleChange}
           required
           placeholder="Service Description"
-          className="min-h-[80px] w-full rounded border px-3 py-2"
+          className="min-h-20 w-full rounded border px-3 py-2"
         />
 
         <label className="flex items-center gap-2">
