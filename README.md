@@ -5,7 +5,7 @@ RepairPoint is a modern full-stack service booking platform that allows users to
 ---
 
 ## 🌐 Live Website
-https://repairpoint.vercel.app
+https://srk-repairpoint.vercel.app/
 
 ---
 
